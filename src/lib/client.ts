@@ -4,6 +4,9 @@ import { setContext } from "@apollo/client/link/context";
 
 export const { getClient } = registerApolloClient(() => {
 
+  const apiKey = process.env.API_KEY;
+  const token = process.env.API_TOKEN;
+
   // Creating an authentication link
   const authLink = setContext((_, { headers }) => {
     // get the authentication token from local storage if it exists
@@ -12,9 +15,8 @@ export const { getClient } = registerApolloClient(() => {
     return {
       headers: {
         ...headers,
-        "X-API-Key": `adZamW0iP5MwZCg5YX7QguWmgTK1iHixDtJI9US`,
-        authorization: `Basic c3JtZy1xYTI6NDk2NmU2ZTU=`,
-        // authorization: token ? `Bearer ${token}` : "",
+        "X-API-Key": apiKey,
+        authorization: `Basic ${token ?? ''}`,
       }
     };
   });

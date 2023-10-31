@@ -892,14 +892,17 @@ export default async function RootLayout({
     },
   });
 
-  const cmsData = data;
-
   console.log();
   return (
     <html lang="en">
       <body className={inter.className}>
-        <img src={data.Page.logo[0].image.publicUrl} alt="HIA" />
-        {data.Page.title}
+        <div className="text-center">
+          <img className="block mx-auto my-10" width="100" src={data.Page.logo[0].image.publicUrl} alt="HIA" />
+          <div>
+          {data.Page.title}
+          </div>
+        </div>
+        
         {children}
       </body>
     </html>
